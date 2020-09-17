@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html style="background-image: url('https://q3p9g6n2.rocketcdn.me/wp-content/ml-loads/2014/07/twitter-logo-small-fade-1920.png');"> 
+  <head>
+    <meta charset="UTF-8">
+    <title>Handsfree Tweeting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% load static %}
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css"></script>
+  </head>
+  <body>
+
+    <h1 style='text-align:center'>Handsfree Tweeting</h1>
+    <br>
+    <div id="controls" class="content-center">
+  	 <button id="recordButton">Record</button>
+  	 <button id="pauseButton" disabled>Pause</button>
+  	 <button id="stopButton" disabled >Stop</button>
+    </div>
+    <div id="formats" style="text-align: center;">start recording to see sample rate</div>
+    <br><br>
+  	<!--<p><strong>Recordings:</strong></p>-->
+  	<ol id="recordingsList" class="content-center"></ol>
+
+    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+  	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    {% load static %}
+    <script src="{% static 'app.js' %}"></script>
+
+    <form action="/external" method="post">
+      {% csrf_token %}
+      {{data_external}}<br><br>
+      <br><br>
+      
+      <button type="submit" value="tweet" style="min-width: 9rem;min-height:2.5rem;" class="content-center">tweet</button>
+    </form> 
+  </body>
+</html>
